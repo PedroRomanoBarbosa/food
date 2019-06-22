@@ -1,44 +1,6 @@
-import { getDB } from '../db';
+import { getAllMealsPopulated } from '../db';
 
 export async function getMeals(req, res) {
-  const db = await getDB();
-  const meals = await db.collection('meals').aggregate([
-    {
-      $unwind: {
-        path: '$ingredients',
-      },
-    },
-    {
-      $lookup: {
-        from: 'items',
-        localField: 'ingredients.itemId',
-        foreignField: '_id',
-        as: 'ingredients.item'
-      }
-    },
-    {
-      $unwind: {
-        path: '$ingredients.item',
-      },
-    },
-    {
-      $project: {
-        ingredients: {
-          id: '$ingredients.itemId',
-          quantity: '$ingredients.quantity',
-          name: '$ingredients.item.name',
-          quantityType: '$ingredients.item.quantityType',
-        }
-      }
-    },
-    {
-      $group: {
-        _id: "$_id",
-        ingredients: {
-          $push: "$ingredients",
-        },
-      },
-    },
-  ]).toArray();
+  const meals = await getAllMealsPopulated();
   res.send(meals);
 }

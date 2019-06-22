@@ -1,11 +1,9 @@
-import { getDB } from '../db';
+import { getAllMealsPopulated } from '../db';
 import seedrandom from 'seedrandom';
 import moment from 'moment';
 
 export async function getMonthlyShoppingList(req, res) {
-  // TODO
-  const db = await getDB();
-  const meals = await db.collection('meals').find({}).toArray();
+  const meals = await getAllMealsPopulated();
   const mealsNumber = meals.length;
   const seed = moment(new Date()).format('YYYYMM');
   var rng = seedrandom(seed);
