@@ -23,6 +23,7 @@ export async function getAllMealsPopulated() {
     },
     {
       $project: {
+        name: "$name",
         ingredients: {
           id: '$ingredients.itemId',
           quantity: '$ingredients.quantity',
@@ -34,6 +35,7 @@ export async function getAllMealsPopulated() {
     {
       $group: {
         _id: "$_id",
+        name: { "$first": "$name" },
         ingredients: {
           $push: "$ingredients",
         },
