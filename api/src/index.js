@@ -3,6 +3,7 @@ import express from 'express';
 import {
   getMonthlyShoppingList,
   getMeals,
+  getWeeklyShoppingList,
 } from './routes';
 
 async function initialize() {
@@ -15,6 +16,7 @@ async function initialize() {
     res.send('This is the Food Project. Hungry?');
   });
   app.get('/month-shopping-list', getMonthlyShoppingList);
+  app.get('/weekly-shopping-list', getWeeklyShoppingList);
   app.get('/meals', getMeals);
 }
 
