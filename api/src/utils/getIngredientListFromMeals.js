@@ -1,6 +1,5 @@
 export default function getIngredientListFromMeals(meals) {
-  return meals.reduce((items, meal) => {
-    console.log(meal);
+  return Object.values(meals.reduce((items, meal) => {
     return meal.ingredients.reduce((acc, { id, name, quantity, quantityType }) => {
       if (items.hasOwnProperty(id)) {
         acc[id].quantity += quantity;
@@ -13,5 +12,5 @@ export default function getIngredientListFromMeals(meals) {
       }
       return acc;
     }, items);
-  }, {});
+  }, {}));
 }
