@@ -4,7 +4,9 @@
   "description": "Server for food",
   "main": "dist/src/index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js"
+    "start": "nodemon --exec babel-node src/index.js",
+    "dump": "mongodump --archive > food",
+    "restore": "mongorestore --archive=food"
   },
   "author": "",
   "license": "ISC",
