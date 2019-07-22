@@ -1,0 +1,29 @@
+.ShoppingList {
+  width: 100%;
+  background-color: #ff7b7b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+  flex-grow: 1;
+}
+
+.ShoppingListDate {
+  margin: 0px 0px 0px 0px;
+}
+
+.ShoppingListTitle {
+  margin: 10px 0px 5px 0px;
+}
+
+.ShopingListIngr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+.ShoppingListIngrText {
+  margin: 5px 0px;
+  font-size: 25px;
+}

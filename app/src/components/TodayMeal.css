@@ -1,0 +1,36 @@
+.TodayMeal {
+  width: 100%;
+  background-color: #0ad48b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+}
+
+.TodayMealDate {
+  margin: 0px 0px 5px 0px;
+}
+
+.TodayMealDesc {
+  margin: 0px 0px 5px 0px;
+}
+
+.TodayMealTitle {
+  margin: 5px 0px;
+}
+
+.TodayMealIngrDesc {
+  margin: 5px 0px;
+}
+
+.TodayMealIngr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.TodayMealIngrText {
+  margin: 2.5px 0px;
+  font-size: 20px;
+}
