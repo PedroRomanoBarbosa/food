@@ -6,18 +6,28 @@
   background-color: #4267b2;
   display: flex;
   flex-direction: row;
+}
+
+.side-button {
+  display: flex;
   align-items: center;
-  padding: 20px 0px;
+  justify-content: center;
+}
+
+.side-button:hover {
+  cursor: pointer;
 }
 
 .TodayMealButton {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-family: "Comfortaa", cursive;
   font-size: 40px;
   margin: 0px 15px;
-}
-
-.TodayMealButton:hover {
-  cursor: pointer;
 }
 
 .TodayMealActions {

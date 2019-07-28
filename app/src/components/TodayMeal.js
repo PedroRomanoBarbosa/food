@@ -2,6 +2,20 @@ import React from "react";
 import "./TodayMeal.css";
 import moment from "moment";
 
+const SideButton = ({
+  text,
+  onClick,
+}) => {
+  return (
+    <div className="side-button" onClick={onClick}>
+      <div className="TodayMealButton">
+        {text}
+      </div>
+      <div className="side-button-overlay" />
+    </div>
+  );
+}
+
 class TodayMeal extends React.Component {
   constructor(props) {
     super(props);
@@ -35,9 +49,10 @@ class TodayMeal extends React.Component {
     return (
       <>
         <div className="TodayMeal">
-          <div className="TodayMealButton" onClick={this.previousDay}>
-            {"<"}
-          </div>
+          <SideButton
+            text="<"
+            onClick={this.previousDay}
+          />
           <div className="TodayMealActions">
             <p className="TodayMealDate">{day.format("dddd")}</p>
             <h2 className="TodayMealDesc">Refeição de Hoje</h2>
@@ -54,9 +69,10 @@ class TodayMeal extends React.Component {
               })}
             </div>
           </div>
-          <div className="TodayMealButton" onClick={this.nextDay}>
-            {">"}
-          </div>
+          <SideButton
+            text=">"
+            onClick={this.nextDay}
+          />
         </div>
       </>
     );

@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 import {
   getMonthlyShoppingList,
@@ -8,6 +9,7 @@ import {
 
 async function initialize() {
   const app = express();
+  app.use(cors());
   app.listen(4000, () =>
     console.log('Example app listening on port 4000!'),
   );
