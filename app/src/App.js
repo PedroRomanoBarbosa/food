@@ -25,7 +25,7 @@ class App extends React.Component {
 
   getInfo = async () => {
     await axios
-      .get("http://localhost:4000/weekly-shopping-list")
+      .get(`http://${window.location.hostname}:4000/weekly-shopping-list`)
       .then(response => {
         this.setState({
           data: response.data,
