@@ -5,6 +5,12 @@ import ShoppingList from "./components/ShoppingList";
 import Loading from "./components/Loading";
 import axios from "axios";
 import moment from "moment";
+import AddButton from "./components/AddButton";
+
+const screens = {
+  MAIN: "MAIN",
+  ADD_MEAL: "ADD_MEAL",
+};
 
 moment.locale("pt", {
   weekdays: "Domingo_Segunda_Terça_Quarta_Quinta_Sexta_Sábado".split("_"),
@@ -19,7 +25,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: {},
-      isLoading: true
+      isLoading: true,
+      screen: screens.MAIN,
     };
   }
 
@@ -38,15 +45,43 @@ class App extends React.Component {
     this.getInfo();
   }
 
+  onAddMeal = () => {
+    this.setState({
+      screen: screens.ADD_MEAL,
+    });
+  }
+
+  renderAddMeal() {
+    return (
+      <div>
+        lol
+      </div>
+    );
+  }
+
+  renderMain() {
+    const { data } = this.state;
+    return (
+      <div>
+        <TodayMeal meals={data.meals} />
+        <ShoppingList itemsList={data.itemsList} />
+        <AddButton
+          text="+ Adiconar Refeição"
+          onClick={this.onAddMeal}
+        />
+      </div>
+    );
+  }
+
   render() {
-    const { data, isLoading } = this.state;
+    const { isLoading, screen } = this.state;
     return (
       <>
         {!isLoading ? (
           <>
             <div className="App">
-              <TodayMeal meals={data.meals} />
-              <ShoppingList itemsList={data.itemsList} />
+            {screen === screens.MAIN && this.renderMain()}
+            {screen === screens.ADD_MEAL && this.renderAddMeal()}
             </div>
           </>
         ) : (

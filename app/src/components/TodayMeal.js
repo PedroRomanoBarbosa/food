@@ -20,7 +20,7 @@ class TodayMeal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      day: moment()
+      day: moment(),
     };
   }
 
@@ -47,34 +47,33 @@ class TodayMeal extends React.Component {
     const { day } = this.state;
     const meal = meals[day.weekday()];
     return (
-      <>
-        <div className="TodayMeal">
-          <SideButton
-            text="<"
-            onClick={this.previousDay}
-          />
-          <div className="TodayMealActions">
-            <p className="TodayMealDate">{day.format("dddd")}</p>
-            <h2 className="TodayMealDesc">Refeição de Hoje</h2>
-            <h1 className="TodayMealTitle">{meal.name}</h1>
-            <div className="TodayMealIngr">
-              {meal.ingredients.map(ingredient => {
-                return (
-                  <p className="TodayMealIngrText" key={ingredient.id}>
-                    {`${ingredient.quantity} ${ingredient.quantityType} ${
-                      ingredient.name
-                    }`}
-                  </p>
-                );
-              })}
-            </div>
+      <div className="TodayMeal">
+        <SideButton
+          text="<"
+          onClick={this.previousDay}
+        />
+        <div className="TodayMealActions">
+          {/* TODO: "Hoje, amanhã, depois de amanhã, ontem..." */}
+          <p className="TodayMealDate">{day.format("dddd")}</p>
+          {/* <h2 className="TodayMealDesc">Refeição de Hoje</h2> Não acho necessário */}
+          <h1 className="TodayMealTitle">{meal.name}</h1>
+          <div className="TodayMealIngr">
+            {meal.ingredients.map(ingredient => {
+              return (
+                <p className="TodayMealIngrText" key={ingredient.id}>
+                  {`${ingredient.quantity} ${ingredient.quantityType} ${
+                    ingredient.name
+                  }`}
+                </p>
+              );
+            })}
           </div>
-          <SideButton
-            text=">"
-            onClick={this.nextDay}
-          />
         </div>
-      </>
+        <SideButton
+          text=">"
+          onClick={this.nextDay}
+        />
+      </div>
     );
   }
 }
