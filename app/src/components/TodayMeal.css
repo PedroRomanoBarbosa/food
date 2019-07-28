@@ -1,6 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Comfortaa&display=swap");
+
 .TodayMeal {
   width: 100%;
-  background-color: #0ad48b;
+  color: rgb(250, 250, 250);
+  background-color: #4267b2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px 0px;
+}
+
+.TodayMealButton {
+  font-family: "Comfortaa", cursive;
+  font-size: 40px;
+  margin: 0px 15px;
+}
+
+.TodayMealButton:hover {
+  cursor: pointer;
+}
+
+.TodayMealActions {
+  width: 100%;
+  color: rgb(250, 250, 250);
+  background-color: #4267b2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,18 +32,22 @@
 
 .TodayMealDate {
   margin: 0px 0px 5px 0px;
+  text-align: center;
 }
 
 .TodayMealDesc {
   margin: 0px 0px 5px 0px;
+  text-align: center;
 }
 
 .TodayMealTitle {
   margin: 5px 0px;
+  text-align: center;
 }
 
 .TodayMealIngrDesc {
   margin: 5px 0px;
+  text-align: center;
 }
 
 .TodayMealIngr {
@@ -28,6 +55,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .TodayMealIngrText {

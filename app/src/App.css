@@ -1,8 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 .App {
-  font-family: "Rubik", sans-serif;
-  color: rgb(250, 250, 250);
+  font-family: "Roboto", sans-serif;
   height: 100%;
   width: 100%;
   display: flex;

@@ -45,7 +45,7 @@ class App extends React.Component {
         {!isLoading ? (
           <>
             <div className="App">
-              <TodayMeal meal={data.meals[moment().weekday()]} />
+              <TodayMeal meals={data.meals} />
               <ShoppingList itemsList={data.itemsList} />
             </div>
           </>
