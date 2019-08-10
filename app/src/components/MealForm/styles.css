@@ -1,0 +1,14 @@
+.meal-form__container {
+    background-color: #4267b2;
+}
+
+.food__input-container {
+    margin-bottom: 20px;
+}
+
+.meal-form__title {
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}

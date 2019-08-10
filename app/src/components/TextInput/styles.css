@@ -1,0 +1,29 @@
+.text-input__container {
+    display: flex;
+    width: 100%;
+}
+
+.text-input__input:focus {
+    border-bottom: solid 5px white;
+    font-size: 35px;
+    padding-bottom: 2px;
+    transition: font-size 0.25s, border-bottom 0.25s, padding-bottom 0.25s;
+    transition-timing-function: ease;
+}
+
+.text-input__input::placeholder {
+    color: #EEEEEE;
+}
+
+.text-input__input {
+    width: 100%;
+    color: white;
+    background-color: #4267b2;
+    border: 0;
+    border-bottom: solid 2px white;
+    font-size: 25px;
+    flex: 1;
+    font-weight: bold;
+    transition: font-size 0.25s, border-bottom 0.25s, padding-bottom 0.25s;
+    transition-timing-function: ease;
+}

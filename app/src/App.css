@@ -3,3 +3,23 @@
 .App {
   font-family: "Roboto", sans-serif;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: 100%;
+}
+
+body, #root, #root > div, #root .App, #root .App > div, .screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+

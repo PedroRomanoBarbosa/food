@@ -6,8 +6,9 @@ import Loading from "./components/Loading";
 import axios from "axios";
 import moment from "moment";
 import AddButton from "./components/AddButton";
+import CreateMealScreen from "./screens/CreateMealScreen";
 
-const screens = {
+export const SCREENS = {
   MAIN: "MAIN",
   ADD_MEAL: "ADD_MEAL",
 };
@@ -26,8 +27,14 @@ class App extends React.Component {
     this.state = {
       data: {},
       isLoading: true,
-      screen: screens.MAIN,
+      screen: SCREENS.MAIN,
     };
+  }
+
+  navigation = {
+    navigate: screen => {
+      this.setState({ screen });
+    },
   }
 
   getInfo = async () => {
@@ -47,14 +54,16 @@ class App extends React.Component {
 
   onAddMeal = () => {
     this.setState({
-      screen: screens.ADD_MEAL,
+      screen: SCREENS.ADD_MEAL,
     });
   }
 
   renderAddMeal() {
     return (
       <div>
-        lol
+        <CreateMealScreen
+          navigation={this.navigation}
+        />
       </div>
     );
   }
@@ -76,18 +85,18 @@ class App extends React.Component {
   render() {
     const { isLoading, screen } = this.state;
     return (
-      <>
+      <div>
         {!isLoading ? (
           <>
             <div className="App">
-            {screen === screens.MAIN && this.renderMain()}
-            {screen === screens.ADD_MEAL && this.renderAddMeal()}
+            {screen === SCREENS.MAIN && this.renderMain()}
+            {screen === SCREENS.ADD_MEAL && this.renderAddMeal()}
             </div>
           </>
         ) : (
           <Loading />
         )}
-      </>
+      </div>
     );
   }
 }
