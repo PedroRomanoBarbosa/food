@@ -5,10 +5,13 @@ import {
   getMonthlyShoppingList,
   getMeals,
   getWeeklyShoppingList,
+  insertMeal,
+  getAllItems,
 } from './routes';
 
 async function initialize() {
   const app = express();
+  app.use(express.json());
   app.use(cors());
   app.listen(4000, () =>
     console.log('Example app listening on port 4000!'),
@@ -20,6 +23,8 @@ async function initialize() {
   app.get('/month-shopping-list', getMonthlyShoppingList);
   app.get('/weekly-shopping-list', getWeeklyShoppingList);
   app.get('/meals', getMeals);
+  app.get('/items', getAllItems);
+  app.post('/insertMeal', insertMeal);
 }
 
 initialize();

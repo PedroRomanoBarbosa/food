@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import withFormik from 'formik';
+import axios from 'axios';
 
 import MealForm from '../../components/MealForm';
 import { SCREENS } from '../../App';
@@ -12,7 +12,24 @@ class CreateMealScreen extends Component {
     this.form = React.createRef();
   }
 
+  state = {
+    allIngredients: [],
+    selectedIngredients: [],
+  };
+
+  componentDidMount() {
+    this.getAllIngredients();
+  }
+
+  getAllIngredients = async () => {
+    const result = await axios.get(`http://${window.location.hostname}:4000/items`);
+    this.setState({
+      allIngredients: result.data,
+    });
+  };
+
   submit() {
+    console.log(this.form);
     this.form.current.submit();
   }
 
@@ -22,6 +39,10 @@ class CreateMealScreen extends Component {
         navigate,
       }
     } = this.props;
+    const {
+      allIngredients,
+      selectedIngredients,
+    } = this.state;
     return (
       <div className="screen create-meal-screen__container">
         <div className="create-meal-screen__content">
@@ -31,7 +52,11 @@ class CreateMealScreen extends Component {
           >
             Back
           </div>
-          <MealForm ref={this.form}/>
+          <MealForm
+            ref={this.form}
+            ingredientsList={allIngredients}
+            ingredients={selectedIngredients}
+          />
         </div>
         <button
           onClick={() => this.submit()}

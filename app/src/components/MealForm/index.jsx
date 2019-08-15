@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import TextInput from '../TextInput';
 
 import "./styles.css";
+import SearchList from '../SearchList';
 
 
 const schema = yup.object().shape({
@@ -20,27 +21,38 @@ const schema = yup.object().shape({
 });
 
 class MealForm extends Component {
-  
   submit = () => {
     this.formik.submitForm();
   }
 
+  selectIngredient(ingredient) {
+    const {
+      ingredients,
+    } = this.props;
+    if (ingredients.findIndex(e => e._id === ingredient._id) === -1) {
+      this.setState({
+        ingredients: [...ingredients, ingredient],
+      });
+    }
+  }
+
   render() {
+    const {
+      name,
+      ingredientsList,
+      ingredients,
+    } = this.props;
     return (
       <div className="meal-form__container">
-        <div className="meal-form__title">Cria a uma refeição!</div>
+        <div className="meal-form__title">Cria uma refeição!</div>
         <Formik
           ref={(_ref) => this.formik = _ref}
           initialValues={{
-            name: '',
-            ingredients: [{
-              id: 'efwef',
-              quantity: 2,
-            }],
+            name: name || '',
+            ingredients: ingredients || [],
           }}
           validationSchema={schema}
           onSubmit={(values, actions) => {
-            console.log('onSubmit');
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
               actions.setSubmitting(false);
@@ -57,9 +69,17 @@ class MealForm extends Component {
                     onBlur={props.handleBlur}
                     value={props.values.name}
                   />
+                  {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+                  {props.values.ingredients.map(selected => {
+                    return (
+                      <div>{selected.name}</div>
+                    );
+                  })}
+                  <SearchList
+                    items={ingredientsList}
+                    onItemSelect={item => this.selectIngredient(item)}
+                  />
                 </div>
-                {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-                {/** TODO: Do Selection List */}
               </form>
             );
           }}

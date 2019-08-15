@@ -1,0 +1,8 @@
+.search-list__item-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #4267b2;
+    height: 20px;
+}
