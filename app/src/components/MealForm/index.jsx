@@ -21,30 +21,47 @@ const schema = yup.object().shape({
 });
 
 class MealForm extends Component {
+  state = {
+    ingredients: [],
+  };
   submit = () => {
     this.formik.submitForm();
   }
 
+  get ingredients() {
+    return this.state.ingredients;
+  }
+
   selectIngredient(ingredient) {
-    const {
-      ingredients,
-    } = this.props;
-    if (ingredients.findIndex(e => e._id === ingredient._id) === -1) {
+    if (this.ingredients.findIndex(e => e._id === ingredient._id) === -1) {
       this.setState({
-        ingredients: [...ingredients, ingredient],
+        ingredients: [...this.ingredients, ingredient],
       });
     }
+  }
+
+  removeIngredient(ingredient) {
+    this.setState({
+      ingredients: this.ingredients.filter(i => {
+        if (i._id === ingredient._id) {
+          return false;
+        }
+        return true;
+      }),
+    });
   }
 
   render() {
     const {
       name,
       ingredientsList,
-      ingredients,
     } = this.props;
+    const {
+      ingredients,
+    } = this.state;
     return (
       <div className="meal-form__container">
-        <div className="meal-form__title">Cria uma refeição!</div>
+        <div className="meal-form__title">Cria uma refeição</div>
         <Formik
           ref={(_ref) => this.formik = _ref}
           initialValues={{
@@ -78,6 +95,9 @@ class MealForm extends Component {
                   <SearchList
                     items={ingredientsList}
                     onItemSelect={item => this.selectIngredient(item)}
+                    onItemRemove={item => this.removeIngredient(item)}
+                    selectedItemValue={item => item.name}
+                    selectedItems={ingredients}
                   />
                 </div>
               </form>

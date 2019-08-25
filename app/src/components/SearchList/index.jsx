@@ -12,8 +12,6 @@ class SearchList extends Component {
       const {
         items,
       } = this.props;
-      console.log(this.props);
-      
       const { term } = this.state;
       return items.filter(item => {
         return term.length === 0 || item.name.toUpperCase().includes(term.trim().toUpperCase());
@@ -22,24 +20,39 @@ class SearchList extends Component {
 
     render() {
       const { term } = this.state;
-      const { onItemSelect } = this.props;
+      const {
+        onItemSelect,
+        selectedItems,
+        selectedItemValue,
+        onItemRemove,
+      } = this.props;
       const items = this.filterItems();
       return (
         <div>
+          <div>
+            {selectedItems && selectedItems.map((item, index) => {
+              return (
+                <div className="search-list__selected-item-container" key={index}>
+                  <div className="search-list__remove-button" onClick={() => onItemRemove(item)}>+</div>
+                  <div className="search-list__remove-button" onClick={() => onItemRemove(item)}>-</div>
+                  <div>{selectedItemValue(item)}</div>
+                </div>
+              );
+            })}
+          </div>
           <TextInput
             value={term}
             onChange={e => this.setState({ term: e.target.value })}
           />
-          <div>
+          <div className="search-list__items-container">
           {items.map((item, index) => {
             return (
               <div
+                className="search-list__item-container"
                 onClick={() => onItemSelect(item)}
                 key={index}
               >
-                <div className="search-list__item-container">
-                  {item.name}
-                </div>
+                {item.name}
               </div>
             );
           })}
