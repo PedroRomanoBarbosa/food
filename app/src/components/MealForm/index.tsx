@@ -20,27 +20,60 @@ const schema = yup.object().shape({
   ).required('Required'),
 });
 
-class MealForm extends Component {
+interface Props {
+  name: string,
+  ingredientsList: any[],
+}
+
+interface State {
+  ingredients: any[]
+}
+
+class MealForm extends Component<Props> {
   state = {
     ingredients: [],
-  };
+  } as State;
+  formik?: any = null;
+  form?: any = null;
+
   submit = () => {
-    this.formik.submitForm();
+    if (this && this.formik) {
+      this.formik.submitForm();
+    }
   }
 
   get ingredients() {
     return this.state.ingredients;
   }
 
-  selectIngredient(ingredient) {
-    if (this.ingredients.findIndex(e => e._id === ingredient._id) === -1) {
+  addItem(ingredient: any) {
+    const index = this.ingredients.findIndex(e => e._id === ingredient._id);
+    const exists = index !== -1;
+    if (exists) {
       this.setState({
-        ingredients: [...this.ingredients, ingredient],
+        ingredients: [
+          ...this.ingredients.slice(0, index),
+          {
+            ...this.ingredients[index],
+            quantity: this.ingredients[index].quantity + 1,
+          },
+          ...this.ingredients.slice(index + 1, this.ingredients.length - 1),
+        ],
+      });
+    } else {
+      this.setState({
+        ingredients: [
+          ...this.ingredients,
+          {
+            ...ingredient,
+            quantity: 0,
+          },
+        ],
       });
     }
   }
 
-  removeIngredient(ingredient) {
+  public removeIngredient(ingredient: any): any {
     this.setState({
       ingredients: this.ingredients.filter(i => {
         if (i._id === ingredient._id) {
@@ -92,11 +125,13 @@ class MealForm extends Component {
                       <div>{selected.name}</div>
                     );
                   })}
+                  <div className="meal-form__ingredients_title meal-form__margin_top">Ingredientes</div>
                   <SearchList
                     items={ingredientsList}
-                    onItemSelect={item => this.selectIngredient(item)}
-                    onItemRemove={item => this.removeIngredient(item)}
-                    selectedItemValue={item => item.name}
+                    onItemAdd={(item: any) => this.addItem(item)}
+                    onItemSubtract={(item: any) => this.removeIngredient(item)}
+                    selectedItemValue={(item: any) => item.name}
+                    selectedItemQuantity={(item: any) => item.quantity}
                     selectedItems={ingredients}
                   />
                 </div>

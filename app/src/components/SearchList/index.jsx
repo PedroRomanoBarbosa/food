@@ -2,6 +2,25 @@ import React, { Component } from 'react';
 import TextInput from "../TextInput";
 
 import './styles.css';
+import Spinner from '../Spinner';
+
+const SearchItem = ({
+  item,
+  onItemAdd,
+  onItemSubtract,
+  selectedItemValue,
+  selectedItemQuantity,
+}) => {
+  return (
+    <div className="search-list__selected-item-container">
+      <div className="search-list__remove-button" onClick={() => onItemAdd(item)}>+</div>
+      <div className="search-list__remove-button" onClick={() => onItemSubtract(item)}>-</div>
+      <div>{selectedItemValue(item)}</div>
+      <div>{`${selectedItemQuantity(item)} quantity`}</div>
+      <Spinner values={["lol", "lel", "kek"]}/>
+    </div>
+  );
+}
 
 class SearchList extends Component {
     state = {
@@ -21,23 +40,24 @@ class SearchList extends Component {
     render() {
       const { term } = this.state;
       const {
-        onItemSelect,
         selectedItems,
         selectedItemValue,
-        onItemRemove,
+        selectedItemQuantity,
+        onItemAdd,
+        onItemSubtract,
       } = this.props;
       const items = this.filterItems();
       return (
         <div>
           <div>
             {selectedItems && selectedItems.map((item, index) => {
-              return (
-                <div className="search-list__selected-item-container" key={index}>
-                  <div className="search-list__remove-button" onClick={() => onItemRemove(item)}>+</div>
-                  <div className="search-list__remove-button" onClick={() => onItemRemove(item)}>-</div>
-                  <div>{selectedItemValue(item)}</div>
-                </div>
-              );
+              return <SearchItem
+                item={item}
+                onItemAdd={onItemAdd}
+                onItemSubtract={onItemSubtract}
+                selectedItemValue={selectedItemValue}
+                selectedItemQuantity={selectedItemQuantity}
+              />
             })}
           </div>
           <TextInput
@@ -49,7 +69,7 @@ class SearchList extends Component {
             return (
               <div
                 className="search-list__item-container"
-                onClick={() => onItemSelect(item)}
+                onClick={() => onItemAdd(item)}
                 key={index}
               >
                 {item.name}

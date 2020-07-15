@@ -27,7 +27,6 @@
 .search-list__selected-item-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     margin-top: 10px;
 }

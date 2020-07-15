@@ -62,7 +62,7 @@ class CreateMealScreen extends Component {
           onClick={() => this.submit()}
           className="create-meal-screen__submit-button"
         >
-          Submit
+          Submeter
         </button>
       </div>
     );
