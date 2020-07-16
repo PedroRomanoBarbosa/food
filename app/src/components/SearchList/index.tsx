@@ -1,10 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, FunctionComponent } from 'react';
 import TextInput from "../TextInput";
 
 import './styles.css';
 import Spinner from '../Spinner';
 
-const SearchItem = ({
+export interface Item {
+  identifier: string
+  name: string
+}
+
+interface SearchListControls {
+  onItemAdd: (item: Item) => any
+  onItemSubtract: (item: Item) => any
+  selectedItemValue: (item: Item) => any
+  selectedItemQuantity: (item: Item) => any
+}
+
+interface SearchListProps extends SearchListControls {
+  items: Item[]
+  selectedItems: Item[]
+}
+
+interface SearchItemProps extends SearchListControls {
+  item: Item
+}
+
+const SearchItem: FunctionComponent<SearchItemProps> = ({
   item,
   onItemAdd,
   onItemSubtract,
@@ -22,7 +43,7 @@ const SearchItem = ({
   );
 }
 
-class SearchList extends Component {
+class SearchList extends Component<SearchListProps> {
     state = {
       term: '',
     };
@@ -62,7 +83,7 @@ class SearchList extends Component {
           </div>
           <TextInput
             value={term}
-            onChange={e => this.setState({ term: e.target.value })}
+            onChange={(e: any) => this.setState({ term: e.target.value })}
           />
           <div className="search-list__items-container">
           {items.map((item, index) => {
