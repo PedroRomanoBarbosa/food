@@ -75,7 +75,7 @@ class App extends React.Component {
         <TodayMeal meals={data.meals} />
         <ShoppingList itemsList={data.itemsList} />
         <AddButton
-          text="+ Adiconar Refeição"
+          text="+ Adicionar Refeição"
           onClick={this.onAddMeal}
         />
       </div>
