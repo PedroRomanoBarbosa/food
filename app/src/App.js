@@ -9,7 +9,6 @@ import moment from "moment";
 import AddButton from "./components/AddButton";
 import CreateMealScreen from "./screens/CreateMealScreen";
 import PrintCartScreen from "./screens/PrintCartScreen";
-import { PrintFormatter } from "./components/PrinterFormatter";
 
 export const SCREENS = {
   MAIN: "MAIN",
