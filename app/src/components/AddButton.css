@@ -1,5 +1,4 @@
 .add-button-container {
-    position: fixed;
     width: 100%;
     bottom: 0;
   }
@@ -7,7 +6,7 @@
   .add-button {
     font-weight: bold;
     font-size: 20px;
-    margin: 50px;
+    margin: 20px 40px 40px 40px;
     padding: 20px;
     text-align: center;
     background-color: #EEEEEE;
