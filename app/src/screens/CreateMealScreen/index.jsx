@@ -68,5 +68,5 @@ class CreateMealScreen extends Component {
     );
   }
 }
- 
+
 export default CreateMealScreen;
